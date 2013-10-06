@@ -24,14 +24,18 @@ setlocal indentkeys=0{,0},0),0],0\,,!^F,o,O,e
 " XML indentkeys
 setlocal indentkeys+=*<Return>,<>>,<<>,/,{,}
 
+fu! SynEOL(lnum)
+  let lnum = prevnonblank(a:lnum)
+  let col = strlen(getline(lnum)) - 1
+  return map(synstack(lnum, col), 'synIDattr(v:val, "name")')
+endfu
+
 " Cleverly mix JS and XML indentation.
 fu! GetJsxIndent()
   let ind = GetJavascriptIndent()
 
   " Get all syntax items for the end of the previous line.
-  let lnum = prevnonblank(v:lnum - 1)
-  let col = strlen(getline(lnum)) - 1
-  let prevsyn = map(synstack(lnum, col), 'synIDattr(v:val, "name")')
+  let prevsyn = SynEOL(v:lnum - 1)
 
   " Keep only the JSX and XML items.
   let jsxsyn = filter(prevsyn, 'v:val =~ "xml" || v:val =~ "jsx"')
@@ -45,11 +49,23 @@ fu! GetJsxIndent()
   "
   " does not reset the indentation of the second line to match the first.
   if !empty(jsxsyn)
-    let ind = max([ind, XmlIndentGet(v:lnum, 0)])
+    let ctag  = '^\s*<\/\.*'
+    let sctag = '^\s*\/>\s*;\='
+
+    if getline(v:lnum) =~? ctag
+      let ind = XmlIndentGet(v:lnum, 0)
+    else
+      let ind = max([ind, XmlIndentGet(v:lnum, 0)])
+    end
 
     " Align '/>' with '<' for multiline self-closing tags.
-    if getline(v:lnum) =~? '^\s*\/>\s*;\='
+    if getline(v:lnum) =~? sctag
       let ind = ind - &sw
+    endif
+
+    " Then correct the indentation of closing tags following '/>'.
+    if getline(v:lnum - 1) =~? sctag && getline(v:lnum) =~? ctag
+        let ind = ind + &sw
     endif
   endif
 
