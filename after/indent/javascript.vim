@@ -24,10 +24,29 @@ setlocal indentkeys=0{,0},0),0],0\,,!^F,o,O,e
 " XML indentkeys
 setlocal indentkeys+=*<Return>,<>>,<<>,/,{,}
 
+" Self-closing tag regex.
+let s:sctag = '^\s*\/>\s*;\='
+
+" Get all syntax types of the end of a given line.
 fu! SynEOL(lnum)
   let lnum = prevnonblank(a:lnum)
-  let col = strlen(getline(lnum)) - 1
+  let col = strlen(getline(lnum))
   return map(synstack(lnum, col), 'synIDattr(v:val, "name")')
+endfu
+
+" Check if a syntax attribute is XMLish.
+fu! SynAttrXMLish(synattr)
+  return a:synattr =~ "xml" || a:synattr =~ "jsx"
+endfu
+
+" Check if a synstack is XMLish (i.e., has an XMLish last attribute).
+fu! SynXMLish(syns)
+  return SynAttrXMLish(get(a:syns, -1))
+endfu
+
+" Check if a synstack denotes the end of a JSX block.
+fu! SynJSXBlockEnd(syns)
+  return get(a:syns, -1) == 'jsBraces' && SynAttrXMLish(get(a:syns, -2))
 endfu
 
 " Cleverly mix JS and XML indentation.
@@ -37,35 +56,19 @@ fu! GetJsxIndent()
   " Get all syntax items for the end of the previous line.
   let prevsyn = SynEOL(v:lnum - 1)
 
-  " Keep only the JSX and XML items.
-  let jsxsyn = filter(prevsyn, 'v:val =~ "xml" || v:val =~ "jsx"')
-
-  " If the previous line ended with XML, assume we are still in JSX and use
-  " XML indenting; otherwise, stick with the existing JS indentation.  This
-  " ensures that hitting an indentkey after the following:
-  "
-  "   foo =
-  "     <my:element
-  "
-  " does not reset the indentation of the second line to match the first.
-  if !empty(jsxsyn)
-    let ctag  = '^\s*<\/\.*'
-    let sctag = '^\s*\/>\s*;\='
-
-    if getline(v:lnum) =~? ctag
-      let ind = XmlIndentGet(v:lnum, 0)
-    else
-      let ind = max([ind, XmlIndentGet(v:lnum, 0)])
-    end
+  " Use XML indenting if the syntax at the end of the previous line was either
+  " JSX or was the closing brace of a jsBlock whose parent syntax was JSX.
+  if SynXMLish(prevsyn) || SynJSXBlockEnd(prevsyn)
+    let ind = XmlIndentGet(v:lnum, 0)
 
     " Align '/>' with '<' for multiline self-closing tags.
-    if getline(v:lnum) =~? sctag
+    if getline(v:lnum) =~? s:sctag
       let ind = ind - &sw
     endif
 
-    " Then correct the indentation of closing tags following '/>'.
-    if getline(v:lnum - 1) =~? sctag && getline(v:lnum) =~? ctag
-        let ind = ind + &sw
+    " Then correct the indentation of any JSX following '/>'.
+    if getline(v:lnum - 1) =~? s:sctag
+      let ind = ind + &sw
     endif
   endif
 
