@@ -22,7 +22,7 @@ setlocal indentexpr=GetJsxIndent()
 " JS indentkeys
 setlocal indentkeys=0{,0},0),0],0\,,!^F,o,O,e
 " XML indentkeys
-setlocal indentkeys+=*<Return>,<>>,<<>,/,{,}
+setlocal indentkeys+=*<Return>,<>>,<<>,/
 
 " Self-closing tag regex.
 let s:sctag = '^\s*\/>\s*;\='
@@ -51,8 +51,6 @@ endfu
 
 " Cleverly mix JS and XML indentation.
 fu! GetJsxIndent()
-  let ind = GetJavascriptIndent()
-
   " Get all syntax items for the end of the previous line.
   let prevsyn = SynEOL(v:lnum - 1)
 
@@ -70,6 +68,8 @@ fu! GetJsxIndent()
     if getline(v:lnum - 1) =~? s:sctag
       let ind = ind + &sw
     endif
+  else
+    let ind = GetJavascriptIndent()
   endif
 
   return ind
