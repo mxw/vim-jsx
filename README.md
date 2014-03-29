@@ -30,9 +30,9 @@ directly into their respective destinations.  If you have existing after syntax
 or indent files for Javascript, you'll probably want to do something like
 
     mkdir -p ~/.vim/after/syntax/javascript
-    cp path/to/vim-xhp/after/syntax/javascript.vim ~/.vim/after/syntax/javascript/xhp.vim
+    cp path/to/vim-jsx/after/syntax/javascript.vim ~/.vim/after/syntax/javascript/javascript.vim
     mkdir -p ~/.vim/after/indent/javascript
-    cp path/to/vim-xhp/after/indent/javascript.vim ~/.vim/after/indent/javascript/xhp.vim
+    cp path/to/vim-jsx/after/indent/javascript.vim ~/.vim/after/indent/javascript/javascript.vim
 
 
 [1]: http://facebook.github.io/react/           "React"
