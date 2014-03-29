@@ -27,7 +27,12 @@ setlocal indentkeys+=*<Return>,<>>,<<>,/
 " Self-closing tag regex.
 let s:sctag = '^\s*\/>\s*;\='
 
-" Get all syntax types of the end of a given line.
+" Get all syntax types at the beginning of a given line.
+fu! SynSOL(lnum)
+  return map(synstack(a:lnum, 1), 'synIDattr(v:val, "name")')
+endfu
+
+" Get all syntax types at the end of a given line.
 fu! SynEOL(lnum)
   let lnum = prevnonblank(a:lnum)
   let col = strlen(getline(lnum))
@@ -36,12 +41,22 @@ endfu
 
 " Check if a syntax attribute is XMLish.
 fu! SynAttrXMLish(synattr)
-  return a:synattr =~ "xml" || a:synattr =~ "jsx"
+  return a:synattr =~ "^xml" || a:synattr =~ "^jsx"
 endfu
 
 " Check if a synstack is XMLish (i.e., has an XMLish last attribute).
 fu! SynXMLish(syns)
   return SynAttrXMLish(get(a:syns, -1))
+endfu
+
+" Check if a synstack has any XMLish attribute.
+fu! SynXMLishAny(syns)
+  for synattr in a:syns
+    if SynAttrXMLish(synattr)
+      return 1
+    endif
+  endfor
+  return 0
 endfu
 
 " Check if a synstack denotes the end of a JSX block.
@@ -51,12 +66,12 @@ endfu
 
 " Cleverly mix JS and XML indentation.
 fu! GetJsxIndent()
-  " Get all syntax items for the end of the previous line.
+  let cursyn  = SynSOL(v:lnum)
   let prevsyn = SynEOL(v:lnum - 1)
 
   " Use XML indenting if the syntax at the end of the previous line was either
   " JSX or was the closing brace of a jsBlock whose parent syntax was JSX.
-  if SynXMLish(prevsyn) || SynJSXBlockEnd(prevsyn)
+  if (SynXMLish(prevsyn) || SynJSXBlockEnd(prevsyn)) && SynXMLishAny(cursyn)
     let ind = XmlIndentGet(v:lnum, 0)
 
     " Align '/>' with '<' for multiline self-closing tags.
