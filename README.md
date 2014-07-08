@@ -15,7 +15,7 @@ Installation
 
 ### Pathogen
 
-The recommended installation method is via [Pathogen][3].  Then simply execute
+The recommended installation method is via [Pathogen][4].  Then simply execute
 
     cd ~/.vim/bundle
     git clone https://github.com/mxw/vim-jsx.git
