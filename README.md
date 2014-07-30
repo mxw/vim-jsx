@@ -20,6 +20,13 @@ The recommended installation method is via [Pathogen][4].  Then simply execute
     cd ~/.vim/bundle
     git clone https://github.com/mxw/vim-jsx.git
 
+### Vundle
+
+You can add vim-jsx with [Vundle][5]. Just add the following line into your `~/.vimrc`
+
+	Bundle 'mxw/vim-jsx'
+
+
 ### Manual Installation
 
 If you have no `~/.vim/after` directory, you can download the tarball or zip
@@ -39,3 +46,4 @@ or indent files for Javascript, you'll probably want to do something like
 [2]: https://github.com/pangloss/vim-javascript "pangloss: vim-javascript"
 [3]: https://github.com/mxw/vim-xhp             "mxw: vim-xhp"
 [4]: https://github.com/tpope/vim-pathogen      "tpope: vim-pathogen"
+[5]: https://github.com/gmarik/vundle           "gmarik: vundle"
