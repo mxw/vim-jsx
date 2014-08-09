@@ -25,7 +25,7 @@ endif
 
 " Highlight JSX regions as XML; recursively match.
 syn region jsxRegion contains=@XMLSyntax,jsxRegion,jsBlock,jsStringD,jsStringS
-  \ start=+<\@<!<\z([a-zA-Z][a-zA-Z0-9:\-]*\)+
+  \ start=+<\@<!<\z([a-zA-Z][a-zA-Z0-9:\-.]*\)+
   \ skip=+<!--\_.\{-}-->+
   \ end=+</\z1\_\s\{-}>+
   \ end=+/>+
