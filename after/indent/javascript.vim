@@ -7,6 +7,10 @@
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Do nothing if we don't find the @jsx pragma.
+exec 'source '.expand('<sfile>:p:h:h').'/jsx-pragma.vim'
+if !b:jsx_pragma_found | finish | endif
+
 " Prologue; load in XML indentation.
 if exists('b:did_indent')
   let s:did_indent=b:did_indent
