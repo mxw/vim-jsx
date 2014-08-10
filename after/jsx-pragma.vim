@@ -20,13 +20,7 @@ if !exists("g:jsx_pragma_required")
 endif
 if !g:jsx_pragma_required | finish | endif
 
-" Save the current cursor, then reset to top.
-let s:curpos = getpos('.')
-call cursor(1, 1)
-
 " Look for the @jsx pragma.  It must be included in a docblock comment before
 " anything else in the file (except whitespace).
-let b:jsx_pragma_found = search('\%^\_s*\/\*\*\%(\_.\%(\*\/\)\@!\)*@jsx\_.\{-}\*\/', 'np')
-
-" Reset the cursor.
-call setpos('.', s:curpos)
+let s:jsx_pragma_pattern = '\%^\_s*\/\*\*\%(\_.\%(\*\/\)\@!\)*@jsx\_.\{-}\*\/'
+let b:jsx_pragma_found = search(s:jsx_pragma_pattern, 'np')
