@@ -26,10 +26,7 @@ call cursor(1, 1)
 
 " Look for the @jsx pragma.  It must be included in a docblock comment before
 " anything else in the file (except whitespace).
-silent! /\%^\_s*\/\*\*\%(\_.\%(\*\/\)\@!\)*\zs@jsx\_.\{-}\*\//
-
-" If the cursor moved, we found the pragma.
-let b:jsx_pragma_found = (line('.') != 1 || col('.') != 1)
+let b:jsx_pragma_found = search('\%^\_s*\/\*\*\%(\_.\%(\*\/\)\@!\)*@jsx\_.\{-}\*\/', 'np')
 
 " Reset the cursor.
 call setpos('.', s:curpos)
