@@ -11,7 +11,7 @@
 
 " Do nothing if we don't find the @jsx pragma.
 exec 'source '.expand('<sfile>:p:h:h').'/jsx-pragma.vim'
-if !b:jsx_pragma_found | finish | endif
+if g:jsx_pragma_required && !b:jsx_pragma_found | finish | endif
 
 " Prologue; load in XML syntax.
 if exists('b:current_syntax')

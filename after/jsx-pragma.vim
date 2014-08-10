@@ -14,14 +14,19 @@ if exists('b:jsx_pragma_found')
   finish
 endif
 
+" Whether the @jsx pragma is required to enable JSX syntax/indent.
+if !exists("g:jsx_pragma_required")
+  let g:jsx_pragma_required = 1
+endif
+if !g:jsx_pragma_required | finish | endif
+
 " Save the current cursor, then reset to top.
 let s:curpos = getpos('.')
 call cursor(1, 1)
 
 " Look for the @jsx pragma.  It must be included in a docblock comment before
 " anything else in the file (except whitespace).
-silent! \
-  /\%^\_s*\/\*\*\%(\_.\%(\*\/\)\@!\)*\zs@jsx\_.\{-}\*\//
+silent! /\%^\_s*\/\*\*\%(\_.\%(\*\/\)\@!\)*\zs@jsx\_.\{-}\*\//
 
 " If the cursor moved, we found the pragma.
 let b:jsx_pragma_found = (line('.') != 1 || col('.') != 1)
