@@ -14,23 +14,17 @@ if exists('b:jsx_pragma_found')
   finish
 endif
 
-" Get the current filepath.
-let s:path = shellescape(expand('%:p'))
+" Save the current cursor, then reset to top.
+let s:curpos = getpos('.')
+call cursor(1, 1)
 
-" Get the line numbers of the first non-whitespace character and the first
-" line-initial doc-comment.
-let s:lnum_text = system("grep -n -m1 '[^\\s]' ".s:path) + 0
-let s:lnum_comment = system("grep -n -m1 '^/\\*\\*' ".s:path) + 0
+" Look for the @jsx pragma.  It must be included in a docblock comment before
+" anything else in the file (except whitespace).
+silent! \
+  /\%^\_s*\/\*\*\%(\_.\%(\*\/\)\@!\)*\zs@jsx\_.\{-}\*\//
 
-" The @jsx pragma is required to be in a doc-comment before anything else, so
-" if we find something else first, this ain't JSX.
-if s:lnum_text < s:lnum_comment
-  let b:jsx_pragma_found = 0
-  finish
-endif
+" If the cursor moved, we found the pragma.
+let b:jsx_pragma_found = (line('.') != 1 || col('.') != 1)
 
-" Now check if @jsx is actually found in that doc-comment.
-let s:pattern = "'(?s)/\\*(?:.(?!\\*\\*/))*jsx.*?\\*/'"
-call system('grep -Pz '.s:pattern.' '.s:path.' > /dev/null')
-
-let b:jsx_pragma_found = !v:shell_error
+" Reset the cursor.
+call setpos('.', s:curpos)
