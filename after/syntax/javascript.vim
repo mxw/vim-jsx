@@ -9,9 +9,12 @@
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Do nothing if we don't find the @jsx pragma.
-exec 'source '.expand('<sfile>:p:h:h').'/jsx-pragma.vim'
+" Do nothing if we don't find the @jsx pragma (and we care).
+exec 'source '.expand('<sfile>:p:h:h').'/jsx-config.vim'
 if g:jsx_pragma_required && !b:jsx_pragma_found | finish | endif
+
+" Do nothing if we don't have the .jsx extension (and we care).
+if g:jsx_ext_required && !b:jsx_ext_found | finish | endif
 
 " Prologue; load in XML syntax.
 if exists('b:current_syntax')
