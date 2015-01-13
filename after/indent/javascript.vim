@@ -8,7 +8,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Do nothing if we don't find the @jsx pragma (and we care).
-exec 'source '.expand('<sfile>:p:h:h').'/jsx-config.vim'
+exec 'source '.fnameescape(expand('<sfile>:p:h:h').'/jsx-config.vim')
 if g:jsx_pragma_required && !b:jsx_pragma_found | finish | endif
 
 " Do nothing if we don't have the .jsx extension (and we care).
