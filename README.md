@@ -35,21 +35,6 @@ The recommended installation method is via [Pathogen][4].  Then simply execute
     cd ~/.vim/bundle
     git clone https://github.com/mxw/vim-jsx.git
 
-### Manual Installation
-
-If you have no `~/.vim/after` directory, you can download the tarball or zip
-and copy the contents to `~/.vim`.
-
-If you have existing `~/.vim/after` files, copy the syntax and indent files
-directly into their respective destinations.  If you have existing after syntax
-or indent files for Javascript, you'll probably want to do something like
-
-    mkdir -p ~/.vim/after/syntax/javascript
-    cp path/to/vim-jsx/after/syntax/javascript.vim ~/.vim/after/syntax/javascript/javascript.vim
-    mkdir -p ~/.vim/after/indent/javascript
-    cp path/to/vim-jsx/after/indent/javascript.vim ~/.vim/after/indent/javascript/javascript.vim
-
-
 [1]: http://facebook.github.io/react/           "React"
 [2]: https://github.com/pangloss/vim-javascript "pangloss: vim-javascript"
 [3]: https://github.com/mxw/vim-xhp             "mxw: vim-xhp"
