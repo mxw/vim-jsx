@@ -10,11 +10,15 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Do nothing if we don't find the @jsx pragma (and we care).
-exec 'source '.fnameescape(expand('<sfile>:p:h:h').'/jsx-config.vim')
+exec 'source '.fnameescape(expand('<sfile>:p:h:h').'/plugin/jsx-config.vim')
 if g:jsx_pragma_required && !b:jsx_pragma_found | finish | endif
 
 " Do nothing if we don't have the .jsx extension (and we care).
 if g:jsx_ext_required && !exists('b:jsx_ext_found') | finish | endif
+
+" Do nothing if the file stil doesn't have a .js extension (i.e. don't support
+" JSX highlighting in XML files)
+if !exists('b:js_ext_found') | finish | endif
 
 " Prologue; load in XML syntax.
 if exists('b:current_syntax')
