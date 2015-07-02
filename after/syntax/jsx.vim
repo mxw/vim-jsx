@@ -27,7 +27,7 @@ if exists('s:current_syntax')
 endif
 
 " Highlight JSX regions as XML; recursively match.
-syn region jsxRegion contains=@XMLSyntax,jsxRegion,jsBlock,jsStringD,jsStringS,javascriptBlock,javascriptString,javaScriptStringS,javaScriptStringD
+syn region jsxRegion contains=@XMLSyntax,jsxRegion,jsBlock,javascriptBlock
   \ start=+<\@<!<\z([a-zA-Z][a-zA-Z0-9:\-.]*\)+
   \ skip=+<!--\_.\{-}-->+
   \ end=+</\z1\_\s\{-}>+
