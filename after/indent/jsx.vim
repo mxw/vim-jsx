@@ -14,6 +14,8 @@ if g:jsx_pragma_required && !b:jsx_pragma_found | finish | endif
 " Do nothing if we don't have the .jsx extension (and we care).
 if g:jsx_ext_required && !exists('b:jsx_ext_found') | finish | endif
 
+if g:jsx_indent_disable | finish | endif
+
 " Prologue; load in XML indentation.
 if exists('b:did_indent')
   let s:did_indent=b:did_indent
