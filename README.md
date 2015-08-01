@@ -25,6 +25,9 @@ to files with the pre-v0.12 `@jsx React.DOM` pragma, add
 
 to your .vimrc or somewhere in your include path.
 
+Please note that this package does not support syntax folding, and has not been
+tested with either JavaScript or XML folding enabled.
+
 Installation
 ------------
 
