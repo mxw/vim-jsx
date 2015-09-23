@@ -16,12 +16,16 @@ Usage
 By default, JSX syntax highlighting and indenting will be enabled only for
 files with the `.jsx` extension.  If you would like JSX in `.js` files, add
 
-    let g:jsx_ext_required = 0
+```viml
+let g:jsx_ext_required = 0
+```
 
 to your .vimrc or somewhere in your include path.  If you wish to restrict JSX
 to files with the pre-v0.12 `@jsx React.DOM` pragma, add
 
-    let g:jsx_pragma_required = 1
+```viml
+let g:jsx_pragma_required = 1
+```
 
 to your .vimrc or somewhere in your include path.
 
