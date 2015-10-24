@@ -10,6 +10,8 @@ This bundle requires pangloss's [vim-javascript][2] syntax highlighting.
 Vim support for inline XML in JS is remarkably similar to the same for PHP,
 which you can find [here][3].
 
+This bundle contributes to [vim-polyglot](https://github.com/sheerun/vim-polyglot) language pack.
+
 Usage
 -----
 
