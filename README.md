@@ -41,6 +41,17 @@ The recommended installation method is via [Pathogen][4].  Then simply execute
 
     cd ~/.vim/bundle
     git clone https://github.com/mxw/vim-jsx.git
+    
+### Vundle
+
+Add to vimrc:
+
+    Plugin 'mxw/vim-jsx'
+
+And install it:
+
+    :so ~/.vimrc
+    :PluginInstall
 
 ### Manual Installation
 
