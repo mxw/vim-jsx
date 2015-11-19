@@ -3,7 +3,7 @@
 "
 " Language: JSX (JavaScript)
 " Maintainer: Max Wang <mxawng@gmail.com>
-" Depends: pangloss/vim-javascript
+" Depends: pangloss/vim-javascript or jiangmiao/simple-javascript-indenter
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -91,7 +91,11 @@ fu! GetJsxIndent()
       let ind = ind + &sw
     endif
   else
-    let ind = GetJavascriptIndent()
+    if exists("*GetJavascriptIndent")
+      let ind = GetJavascriptIndent()
+    elseif exists("*GetJsIndent")
+      let ind = GetJsIndent()
+    endif
   endif
 
   return ind
