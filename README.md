@@ -5,7 +5,7 @@ Syntax highlighting and indenting for JSX.  JSX is a JavaScript syntax
 transformer which translates inline XML document fragments into JavaScript
 objects.  It was developed by Facebook alongside [React][1].
 
-This bundle requires pangloss's [vim-javascript][2] syntax highlighting.
+This bundle requires pangloss's [vim-javascript][2] or jiangmiao's [simple-javascript-indenter][5] plugin.
 
 Vim support for inline XML in JS is remarkably similar to the same for PHP,
 which you can find [here][3].
@@ -57,7 +57,8 @@ or indent files for Javascript, you'll probably want to do something like
     cp path/to/vim-jsx/after/indent/javascript.vim ~/.vim/after/indent/javascript/javascript.vim
 
 
-[1]: http://facebook.github.io/react/           "React"
-[2]: https://github.com/pangloss/vim-javascript "pangloss: vim-javascript"
-[3]: https://github.com/mxw/vim-xhp             "mxw: vim-xhp"
-[4]: https://github.com/tpope/vim-pathogen      "tpope: vim-pathogen"
+[1]: http://facebook.github.io/react/                        "React"
+[2]: https://github.com/pangloss/vim-javascript              "pangloss: vim-javascript"
+[3]: https://github.com/mxw/vim-xhp                          "mxw: vim-xhp"
+[4]: https://github.com/tpope/vim-pathogen                   "tpope: vim-pathogen"
+[5]: https://github.com/jiangmiao/simple-javascript-indenter "jiangmiao: simple-javascript-indenter"
