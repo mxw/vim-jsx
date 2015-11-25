@@ -44,10 +44,10 @@ The recommended installation method is via [Pathogen][4].  Then simply execute
 
 ### Vundle
 
-You can add vim-jsx with [Vundle][5].  Just add the following line into your `~/.vimrc`
+You can also add vim-jsx using [Vundle][5]---just add the following line to
+your .vimrc:
 
     Bundle 'mxw/vim-jsx'
-
 
 ### Manual Installation
 
