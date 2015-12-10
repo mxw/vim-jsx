@@ -85,16 +85,14 @@ fu! GetJsxIndent()
       let ind = ind + &sw
     endif
     
-    if g:jsx_multiline_opening_tags
-      " Align '>' with '<' for multiline opening tags.
-      if getline(v:lnum) =~? s:multilineopentag
-        let ind = ind - &sw
-      endif
+    " Align '>' with '<' for multiline opening tags.
+    if getline(v:lnum) =~? s:multilineopentag
+      let ind = ind - &sw
+    endif
 
-      " Then correct the indentation of any JSX following '>'.
-      if getline(v:lnum - 1) =~? s:multilineopentag
-        let ind = ind + &sw
-      endif
+    " Then correct the indentation of any JSX following '>'.
+    if getline(v:lnum - 1) =~? s:multilineopentag
+      let ind = ind + &sw
     endif
   else
     let ind = GetJavascriptIndent()
