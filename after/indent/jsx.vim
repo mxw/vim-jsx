@@ -26,6 +26,7 @@ setlocal indentkeys+=*<Return>,<>>,<<>,/
 
 " Self-closing tag regex.
 let s:sctag = '^\s*\/>\s*;\='
+let s:multilineopentag = '^\s*>\s*;\='
 
 " Get all syntax types at the beginning of a given line.
 fu! SynSOL(lnum)
@@ -82,6 +83,18 @@ fu! GetJsxIndent()
     " Then correct the indentation of any JSX following '/>'.
     if getline(v:lnum - 1) =~? s:sctag
       let ind = ind + &sw
+    endif
+    
+    if g:jsx_multiline_opening_tags
+      " Align '>' with '<' for multiline opening tags.
+      if getline(v:lnum) =~? s:multilineopentag
+        let ind = ind - &sw
+      endif
+
+      " Then correct the indentation of any JSX following '>'.
+      if getline(v:lnum - 1) =~? s:multilineopentag
+        let ind = ind + &sw
+      endif
     endif
   else
     let ind = GetJavascriptIndent()
