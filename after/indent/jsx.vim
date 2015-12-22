@@ -24,7 +24,7 @@ setlocal indentkeys=0{,0},0),0],0\,,!^F,o,O,e
 " XML indentkeys
 setlocal indentkeys+=*<Return>,<>>,<<>,/
 
-" Self-closing tag regex.
+" Multiline end tag regex (line beginning with '>' or '/>')
 let s:endtag = '^\s*\/\?>\s*;\='
 
 " Get all syntax types at the beginning of a given line.
