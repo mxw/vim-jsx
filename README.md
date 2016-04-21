@@ -70,10 +70,21 @@ The recommended installation method is via [Pathogen][4].  Then simply execute
 
 ### Vundle
 
-You can also add vim-jsx using [Vundle][5]---just add the following line to
-your .vimrc:
+You can also add vim-jsx using [Vundle][5]---just add the following lines to
+your `~/.vimrc`:
 
-    Bundle 'mxw/vim-jsx'
+    Plugin 'pangloss/vim-javascript'
+    Plugin 'mxw/vim-jsx'
+
+To install from within vim, use the commands below.
+
+    :so ~/.vimrc
+    :PluginInstall
+
+Alternatively, use the command below to install the plugins from the command
+line.
+
+    vim +PluginInstall +qall
 
 ### Manual Installation
 
@@ -94,4 +105,4 @@ or indent files for Javascript, you'll probably want to do something like
 [2]: https://github.com/pangloss/vim-javascript "pangloss: vim-javascript"
 [3]: https://github.com/mxw/vim-xhp             "mxw: vim-xhp"
 [4]: https://github.com/tpope/vim-pathogen      "tpope: vim-pathogen"
-[5]: https://github.com/gmarik/vundle           "gmarik: vundle"
+[5]: https://github.com/VundleVim/Vundle        "VundleVim: Vundle"
