@@ -3,7 +3,6 @@
 "
 " Language: JSX (JavaScript)
 " Maintainer: Max Wang <mxawng@gmail.com>
-" Depends: pangloss/vim-javascript
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -61,7 +60,7 @@ endfu
 
 " Check if a synstack denotes the end of a JSX block.
 fu! SynJSXBlockEnd(syns)
-  return get(a:syns, -1) == 'jsBraces' && SynAttrXMLish(get(a:syns, -2))
+  return get(a:syns, -1) =~ '\%(js\|javascript\)Braces' && SynAttrXMLish(get(a:syns, -2))
 endfu
 
 " Cleverly mix JS and XML indentation.
@@ -84,7 +83,12 @@ fu! GetJsxIndent()
       let ind = ind + &sw
     endif
   else
-    let ind = GetJavascriptIndent()
+    if exists("*GetJavascriptIndent")
+      " For pangloss/vim-javascript.
+      let ind = GetJavascriptIndent()
+    else
+      let ind = indent(v:lnum)
+    endif
   endif
 
   return ind
