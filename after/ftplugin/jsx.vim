@@ -3,7 +3,6 @@
 "
 " Language: JSX (JavaScript)
 " Maintainer: Max Wang <mxawng@gmail.com>
-" Depends: pangloss/vim-javascript
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
