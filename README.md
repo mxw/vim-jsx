@@ -5,7 +5,17 @@ Syntax highlighting and indenting for JSX.  JSX is a JavaScript syntax
 transformer which translates inline XML document fragments into JavaScript
 objects.  It was developed by Facebook alongside [React][1].
 
-This bundle requires pangloss's [vim-javascript][2] syntax highlighting.
+vim-jsx is _not_ a JavaScript syntax package, so in order to use it, you will
+also need to choose a base JS highlighter.  [pangloss/vim-javascript][2] is the
+recommended package---it is vim-jsx's "official" dependency, and the only
+package against which it is regularly tested.  However, vim-jsx makes a best
+effort to support other JavaScript syntax packages, including:
+- pangloss/vim-javascript
+- jelera/vim-javascript-syntax
+- othree/yajs
+
+Notably, the system vim JavaScript syntax is _not_ supported, due to its
+over-simplicity.
 
 Vim support for inline XML in JS is remarkably similar to the same for PHP,
 which you can find [here][3].
@@ -16,20 +26,20 @@ Troubleshooting
 If you're experiencing weird highlighting or indenting throughout your JSX
 code, please file a GitHub issue which includes the following:
 
-- A brief affirmation that you've read the README and installed the appropriate
-  dependencies.
+- A brief affirmation that you've read the README and have installed one of the
+  supported dependencies (and which one you're using).
 
-- A minimal ~/.vimrc which repros the issue you're having, as well as a
-  screenshot or gif of the issue (a paste is insufficient, since it doesn't
-  show me the specific highlighting or indenting problem).  To obtain a minimal
-  ~/.vimrc, simply bisect your ~/.vimrc by adding `finish` at various points in
-  the file.  (You can likewise bisect your included plugins by selectively
-  including only half of them, then a quarter, etc.).
+- A minimal ~/.vimrc which repros the issue you're having, as well as both a
+  paste and a screenshot of the issue (a paste alone is insufficient, since it
+  doesn't show me the specific highlighting or indenting problem).  To obtain a
+  minimal ~/.vimrc, simply bisect your ~/.vimrc by adding `finish` at various
+  points in the file.  (You can likewise bisect your included plugins by
+  selectively including only half of them, then a quarter, etc.).
 
 Most of the issues filed result from failures to install vim-javascript or
 conflicts with existing JS syntax or indent files---so failing to indicate that
-you've ruled those issues out may result in your issue being closed with no
-comment.
+you've ruled those issues out may result in your issue being closed with
+minimal comment.
 
 (Please feel free to disregard all this for feature requests and more
 corner-case bugs.)
