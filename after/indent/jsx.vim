@@ -6,6 +6,9 @@
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Save the current JavaScript indentexpr.
+let b:jsx_js_indentexpr = &indentexpr
+
 " Prologue; load in XML indentation.
 if exists('b:did_indent')
   let s:did_indent=b:did_indent
@@ -60,7 +63,8 @@ endfu
 
 " Check if a synstack denotes the end of a JSX block.
 fu! SynJSXBlockEnd(syns)
-  return get(a:syns, -1) =~ '\%(js\|javascript\)Braces' && SynAttrXMLish(get(a:syns, -2))
+  return get(a:syns, -1) =~ '\%(js\|javascript\)Braces' &&
+       \ SynAttrXMLish(get(a:syns, -2))
 endfu
 
 " Cleverly mix JS and XML indentation.
@@ -83,9 +87,10 @@ fu! GetJsxIndent()
       let ind = ind + &sw
     endif
   else
-    if exists("*GetJavascriptIndent")
-      " For pangloss/vim-javascript.
-      let ind = GetJavascriptIndent()
+    if len(b:jsx_js_indentexpr)
+      " Invoke the base JS package's custom indenter.  (For vim-javascript,
+      " e.g., this will be GetJavascriptIndent().)
+      let ind = eval(b:jsx_js_indentexpr)
     else
       let ind = cindent(v:lnum)
     endif
