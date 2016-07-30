@@ -79,7 +79,8 @@ together in blissful harmony.  This means that any XML syntax defaults carry
 over to the XML portions of vim, and it's common for many colorschemes to
 highlight start and end tags differently due to the system XML syntax defaults.
 
-- _Syntax highlighting is working, but indentation is broken.  What's wrong?_
+- _Syntax highlighting seems to work, but breaks highlighting and indenting
+  further down in the file.  What's wrong?_
 
 This often results from trying to enable XML folding in one's `~/.vimrc` (i.e.,
 via `let g:xml_syntax_folding = 1`).  vim-jsx does not support syntax folding,
