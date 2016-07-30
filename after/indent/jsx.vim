@@ -87,7 +87,7 @@ fu! GetJsxIndent()
       " For pangloss/vim-javascript.
       let ind = GetJavascriptIndent()
     else
-      let ind = indent(v:lnum)
+      let ind = cindent(v:lnum)
     endif
   endif
 
