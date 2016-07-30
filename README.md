@@ -15,7 +15,8 @@ effort to support other JavaScript syntax packages, including:
 - othree/yajs
 
 Notably, the system vim JavaScript syntax is _not_ supported, due to its
-over-simplicity.
+over-simplicity.  However, the system XML syntax package is an implicit
+dependency.
 
 Vim support for inline XML in JS is remarkably similar to the same for PHP,
 which you can find [here][3].
@@ -23,26 +24,25 @@ which you can find [here][3].
 Troubleshooting
 ---------------
 
-If you're experiencing weird highlighting or indenting throughout your JSX
-code, please file a GitHub issue which includes the following:
+If you're experiencing incorrect highlighting or indenting in your JSX code,
+please file a GitHub issue which includes the following:
 
 - A brief affirmation that you've read the README and have installed one of the
-  supported dependencies (and which one you're using).
+  supported dependencies (and the name of the one you're using).
 
 - A minimal ~/.vimrc which repros the issue you're having, as well as both a
   paste and a screenshot of the issue (a paste alone is insufficient, since it
-  doesn't show me the specific highlighting or indenting problem).  To obtain a
-  minimal ~/.vimrc, simply bisect your ~/.vimrc by adding `finish` at various
-  points in the file.  (You can likewise bisect your included plugins by
-  selectively including only half of them, then a quarter, etc.).
+  doesn't illustrate the specific highlighting or indenting problem).  To
+  obtain a minimal ~/.vimrc, simply bisect your ~/.vimrc by adding `finish` at
+  various points in the file.  (You can likewise bisect your included plugins
+  by selectively including only half of them, then a quarter, etc.).
 
 Most of the issues filed result from failures to install vim-javascript or
 conflicts with existing JS syntax or indent files---so failing to indicate that
 you've ruled those issues out may result in your issue being closed with
 minimal comment.
 
-(Please feel free to disregard all this for feature requests and more
-corner-case bugs.)
+(Please feel free to disregard all this for feature requests.)
 
 Usage
 -----
@@ -63,8 +63,27 @@ let g:jsx_pragma_required = 1
 
 to your .vimrc or somewhere in your include path.
 
-Please note that this package does not support syntax folding, and has not been
-tested with either JavaScript or XML folding enabled.
+Frequently Asked Questions
+--------------------------
+
+- _How come syntax highlighting doesn't work at all?_
+
+This is the only question I'll answer with another question---Which do you
+think is more likely: (a) this package fails completely and utterly in serving
+its most fundamental purpose, or (b) user error?
+
+- _Why are my end tags colored differently than my start tags?_
+
+vim-jsx is basically the glue that holds JavaScript and XML syntax packages
+together in blissful harmony.  This means that any XML syntax defaults carry
+over to the XML portions of vim, and it's common for many colorschemes to
+highlight start and end tags differently due to the system XML syntax defaults.
+
+- _Syntax highlighting is working, but indentation is broken.  What's wrong?_
+
+This often results from trying to enable XML folding in one's `~/.vimrc` (i.e.,
+via `let g:xml_syntax_folding = 1`).  vim-jsx does not support syntax folding,
+and is not tested with either JavaScript or XML folding enabled.
 
 Installation
 ------------
