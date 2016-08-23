@@ -135,4 +135,4 @@ or indent files for Javascript, you'll probably want to do something like
 [2]: https://github.com/pangloss/vim-javascript "pangloss: vim-javascript"
 [3]: https://github.com/mxw/vim-xhp             "mxw: vim-xhp"
 [4]: https://github.com/tpope/vim-pathogen      "tpope: vim-pathogen"
-[5]: https://github.com/VundleVim/Vundle        "VundleVim: Vundle"
+[5]: https://github.com/VundleVim/Vundle.vim    "VundleVim: Vundle.vim"
