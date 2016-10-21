@@ -25,6 +25,8 @@ endif
 
 " Whether to set the JSX filetype on *.js files.
 fu! <SID>EnableJSX()
+  b:jsx_pragma_found = 0
+
   if g:jsx_pragma_required && !b:jsx_pragma_found | return 0 | endif
   if g:jsx_ext_required && !exists('b:jsx_ext_found') | return 0 | endif
   return 1
