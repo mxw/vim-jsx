@@ -44,6 +44,11 @@ minimal comment.
 
 (Please feel free to disregard all this for feature requests.)
 
+Note for `tmux` users: Just running `:source ~/.vimrc` after installation will
+not cause syntax highlighting to appear. Nor will closing your terminal, then
+reattaching to your current `tmux` session. You will have to kill your `tmux`
+session and attach to a new one to see the change take place.
+
 Usage
 -----
 
