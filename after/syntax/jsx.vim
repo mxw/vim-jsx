@@ -50,7 +50,7 @@ syn region jsxRegion
   \ start=+\%(<\|\w\)\@<!<\z([a-zA-Z][a-zA-Z0-9:\-.]*\)+
   \ skip=+<!--\_.\{-}-->+
   \ end=+</\z1\_\s\{-}>+
-  \ end=+/>+
+  \ end=+/?>+
   \ keepend
   \ extend
 
