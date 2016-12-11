@@ -9,6 +9,8 @@
 " Save the current JavaScript indentexpr.
 let b:jsx_js_indentexpr = &indentexpr
 
+if g:jsx_indent_disable | finish | endif
+
 " Prologue; load in XML indentation.
 if exists('b:did_indent')
   let s:did_indent=b:did_indent
