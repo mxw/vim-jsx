@@ -93,8 +93,7 @@ Installation
 
 The recommended installation method is via [Pathogen][4].  Then simply execute
 
-    cd ~/.vim/bundle
-    git clone https://github.com/mxw/vim-jsx.git
+    git clone https://github.com/mxw/vim-jsx.git ~/.vim/bundle/vim-jsx
 
 (You can install [vim-javascript][2] in an analogous manner.)
 
