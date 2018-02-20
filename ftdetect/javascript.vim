@@ -8,7 +8,7 @@
 
 " Whether the .jsx extension is required.
 if !exists('g:jsx_ext_required')
-  let g:jsx_ext_required = 1
+  let g:jsx_ext_required = 0
 endif
 
 " Whether the @jsx pragma is required.

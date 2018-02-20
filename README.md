@@ -47,11 +47,11 @@ minimal comment.
 Usage
 -----
 
-By default, JSX syntax highlighting and indenting will be enabled only for
-files with the `.jsx` extension.  If you would like JSX in `.js` files, add
+By default, JSX syntax highlighting and indenting will be enabled for
+files with the `.js` and `.jsx` extension.  If you would like JSX only in `.jsx` files, add
 
 ```viml
-let g:jsx_ext_required = 0
+let g:jsx_ext_required = 1
 ```
 
 to your .vimrc or somewhere in your include path.  If you wish to restrict JSX
