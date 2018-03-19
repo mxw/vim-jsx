@@ -30,13 +30,13 @@ endif
 "   - othree/yajs.vim:              javascriptNoReserved
 
 
-" JSX attributes should color as JS.  Note the trivial end pattern; we let
-" jsBlock take care of ending the region.
-syn region xmlString contained start=+{+ end=++ contains=jsBlock,javascriptBlock
+" JSX attributes should color as JS.
+syn region xmlString contained start=+{+ end=+}+ contains=jsBlock,javascriptBlock
 
 " JSX child blocks behave just like JSX attributes, except that (a) they are
 " syntactically distinct, and (b) they need the syn-extend argument, or else
-" nested XML end-tag patterns may end the outer jsxRegion.
+" nested XML end-tag patterns may end the outer jsxRegion.  Note the trivial
+" end pattern; we let jsBlock take care of ending the region.
 syn region jsxChild contained start=+{+ end=++ contains=jsBlock,javascriptBlock
   \ extend
 
