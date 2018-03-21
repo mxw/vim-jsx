@@ -34,6 +34,10 @@ endif
 " jsBlock take care of ending the region.
 syn region xmlString contained start=+{+ end=++ contains=jsBlock,javascriptBlock
 
+" JSX comments inside XML tag should color as comment.  Note the trivial end pattern; we let
+" jsComment take care of ending the region.
+syn region xmlString contained start=+//+ end=++ contains=jsComment
+
 " JSX child blocks behave just like JSX attributes, except that (a) they are
 " syntactically distinct, and (b) they need the syn-extend argument, or else
 " nested XML end-tag patterns may end the outer jsxRegion.
