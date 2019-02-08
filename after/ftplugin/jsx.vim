@@ -9,8 +9,7 @@
 " modified from html.vim
 if exists("loaded_matchit")
   let b:match_ignorecase = 0
-  let s:jsx_match_words = '(:),\[:\],{:},<:>,' .
-        \ '<\@<=\([^/][^ \t>]*\)[^>]*\%(/\@<!>\|$\):<\@<=/\1>'
+  let s:jsx_match_words = '<\([a-zA-Z0-9.]\+\)\(>\|$\|\s\):<\/\1>'
   let b:match_words = exists('b:match_words')
     \ ? b:match_words . ',' . s:jsx_match_words
     \ : s:jsx_match_words
