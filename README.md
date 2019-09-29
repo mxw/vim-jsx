@@ -72,6 +72,10 @@ This is the only question I'll answer with another question---Which do you
 think is more likely: (a) this package fails completely and utterly in serving
 its most fundamental purpose, or (b) user error?
 
+Answer: (A) This packages fails completely and utterly in serving its most fundamental purpose.
+Instead of trying to figure out what you did wrong, please use the following plugin (https://github.com/MaxMEllon/vim-jsx-pretty) that served its most fundamental purpose in the exact same configuration environment.
+Literally just disabled vim-jsx, enabled vim-jsx-pretty, and everything now works. Thanks.
+
 - _Why are my end tags colored differently than my start tags?_
 
 vim-jsx is basically the glue that holds JavaScript and XML syntax packages
