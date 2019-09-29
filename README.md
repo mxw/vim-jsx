@@ -1,6 +1,26 @@
 vim-jsx
 =======
 
+**IMPORTANT**: This package is deprecated!  It apparently broke following
+changes to the [pangloss/vim-javascript][2] JavaScript syntax package circa
+early 2019.  As someone who has (perhaps surprisingly) never written a single
+line of JSX or React code except to test this package, I don't closely track
+breaking changes like these, hence the (lamentable) inactivity in this repo.
+
+Fortunately, the community seems to have settled on
+[MaxMEllon/vim-jsx-pretty][6] as the syntax package of choice for up-to-date
+JSX support.  If you're not writing exclusively pre-2019 JavaScript with
+pre-2019 tooling, consider switching over to that package.
+
+Thanks for following along here, and I hope this package was useful to folks in
+the years since React first debuted.
+
+If things change and this package becomes actively maintained again, I'll be
+sure to update this note.
+
+Introduction
+------------
+
 Syntax highlighting and indenting for JSX.  JSX is a JavaScript syntax
 transformer which translates inline XML document fragments into JavaScript
 objects.  It was developed by Facebook alongside [React][1].
@@ -130,8 +150,9 @@ or indent files for Javascript, you'll probably want to do something like
     cp path/to/vim-jsx/after/indent/jsx.vim ~/.vim/after/indent/javascript/jsx.vim
 
 
-[1]: http://facebook.github.io/react/           "React"
-[2]: https://github.com/pangloss/vim-javascript "pangloss: vim-javascript"
-[3]: https://github.com/mxw/vim-xhp             "mxw: vim-xhp"
-[4]: https://github.com/tpope/vim-pathogen      "tpope: vim-pathogen"
-[5]: https://github.com/VundleVim/Vundle.vim    "VundleVim: Vundle.vim"
+[1]: http://facebook.github.io/react/             "React"
+[2]: https://github.com/pangloss/vim-javascript   "pangloss: vim-javascript"
+[3]: https://github.com/mxw/vim-xhp               "mxw: vim-xhp"
+[4]: https://github.com/tpope/vim-pathogen        "tpope: vim-pathogen"
+[5]: https://github.com/VundleVim/Vundle.vim      "VundleVim: Vundle.vim"
+[6]: https://github.com/MaxMEllon/vim-jsx-pretty  "MaxMEllon: vim-jsx-pretty"
