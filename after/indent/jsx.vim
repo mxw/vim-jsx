@@ -97,7 +97,13 @@ fu! GetJsxIndent()
     endif
 
     " Then correct the indentation of any JSX following '/>' or '>'.
-    if getline(v:lnum - 1) =~? s:endtag
+    " Skip empty lines
+    let i = 1
+    while ((v:lnum - i) != a:firstline && getline(v:lnum - i) =~? '^\s*$')
+       let i = i + 1
+    endwhile
+
+    if getline(v:lnum - i) =~? s:endtag
       let ind = ind + &sw
     endif
   else
